@@ -1,0 +1,286 @@
+	1.largest of two numbers
+echo "enter two numbers"
+read n
+read m
+if [ $n -gt $m ]
+ then
+  echo "$n is greater"
+else
+  echo "$m is greater"
+fi
+
+
+	2.sum of digits
+echo "enter the numbers"
+read n
+sum=0
+while [ $n != 0 ]
+ do
+  rem=$(( n % 10 ))
+  sum=$(( sum + rem ))
+  n=$(( n / 10 ))
+ done
+echo "the sum of digits is $sum"
+
+
+	3.prime or not
+echo -e "Enter Number : \c"
+read n
+for((i=2; i<=$n/2; i++))
+do
+  ans=$(( n%i ))
+  if [ $ans -eq 0 ]
+  then
+    echo "$n is not a prime number."
+    exit 0
+  fi
+done
+echo "$n is a prime number."
+
+
+	4.Arithmetic operation
+echo " Enter the 1st number"
+read n1
+echo " Enter the 2nd number"
+read n2
+for ((;;))
+do
+echo "Menu: 1:Add 2:Sub 3:Mul 4:Div 5:Mod 6:Exit"
+echo "Enter the choice"
+read ch
+case $ch in
+1) echo "Addition is: $((n1+n2))";;
+2) echo "Subtraction is: $((n1-n2))";;
+3) echo "Multiplication is: $((n1*n2))";;
+4) echo "Division is: $((n1/n2))";;
+5) echo "Modulas is: $((n1%n2))";;
+6) echo "Exiting!!" 
+   break ;;
+*) echo "Enter valid choice";;
+esac
+done
+
+
+	5.star pattern
+pyramid
+echo " Enter the Number of rows"
+read p
+for((m=1; m<=p; m++))
+do
+for((a=m; a<=p; a++))
+do
+echo -ne " ";
+done
+for((n=1; n<=m; n++))
+do
+echo -ne "*";
+done
+for((i=1; i<m; i++))
+do
+echo -ne "*";
+done
+echo;
+done
+
+asc
+echo " Enter the Number of rows"
+read p
+for((i=1; i<=p; i++))
+do
+for((j=1; j<=$i; j++))
+do
+echo -ne "*"
+done
+echo;
+done
+
+dsc
+printf "Enter num of Rows:"
+read rows
+for ((i=rows;i>=1;i--))
+   do
+    for ((j=1;j<=i;j++))
+     do
+     printf "* "
+     done
+  printf "\n"
+done
+
+
+	6.number pattern
+printf "Enter num of Rows:"
+read rows
+num=1
+for ((i=1;i<=rows;i++))
+   do
+    for ((j=1;j<=i;j++))
+     do
+     printf "$num "
+     num=$((num + 1))
+     done
+     num=1
+  printf "\n"
+done
+
+
+	7.palindrome
+echo "Enter a number: " 
+read number 
+reverse=0 
+original=$number 
+while [ $number -ne 0 ] 
+do 
+remainder=$(( $number % 10 )) 
+reverse=$(( $reverse * 10 + $remainder )) 
+number=$(( $number / 10 )) 
+done 
+if [ $original -eq $reverse ] 
+then 
+echo "$original is a palindrome." 
+else 
+echo "$original is not a palindrome." 
+fi 
+
+echo "Enter a string:"
+read str
+rev=$(expr $str|rev)
+if [ $rev=$str ]
+then
+echo "the given string is palindrome "
+else
+echo "the given string is not palindrome "
+fi
+
+
+	8.Factorial
+echo "Enter a number"
+read num                     
+fact=1                    
+for((i=2;i<=num;i++))
+do
+  fact=$((fact * i)) 
+done  
+echo $fact
+
+
+	9.create file in $user
+folder="user/class/batch"
+mkdir -p "$folder"
+touch "$folder/text.txt"
+
+
+	10.display list of files in a directory
+find user -maxdepth 3 -type f
+
+
+	11.count no: of users logged in
+echo -n "number of login = "
+w -h | wc -l
+echo -n "number of process = "
+w -h | w -p | wc -l
+
+
+	12.print file names in a directory
+folder="user"
+find "$folder" -type f -exec stat -c " %i %y %n"  {} \;
+
+
+	13.print end of glossary file
+echo "Enter path:"
+read path
+A=()
+mapfile -t A < "$path"
+l=${#A[@]}
+for ((i=l-1; i>=0; --i))
+do 
+    echo "${#A[i]}"
+done
+
+
+	1.odd or even
+num = int(input("Enter a number: "))
+if (num % 2) == 0:
+   print("Even")
+else:
+   print( num,"is Odd")
+
+
+	2.palindrome
+def isPalindrome(s):
+    return s == s[::-1]
+
+s = (input("Enter the string:"))
+ans = isPalindrome(s)
+
+if ans:
+    print("palindrome")
+else:
+    print("Not palindrome")
+
+
+	3.list sorting
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+arr = [64, 34, 25, 12, 22, 11, 90]
+print("Before sorting: ", arr)
+arr = bubble_sort(arr)
+print("After sorting: ", arr)
+
+
+	4.Factorial using recursion
+def refac(n):
+   if n == 1:
+       return n
+   else:
+       return n*refac(n-1)
+
+num = int(input("Enter a number: "))
+
+if num < 0:
+   print("factorial does not exist for negative numbers")
+elif num == 0:
+   print("The factorial of 0 is 1")
+else:
+   print("The factorial of", num, "is", refac(num))
+	
+	
+	5.password complexity
+import re
+password = (input("Enter the password:"))
+flag = 0
+while True:
+    if (len(password)<8):
+        flag = -1
+        break
+    elif not re.search("[a-z]", password):
+        flag = -1
+        break
+    elif not re.search("[A-Z]", password):
+        flag = -1
+        break
+    elif not re.search("[0-9]", password):
+        flag = -1
+        break
+    elif not re.search("[@_$/*-+!#%^&]" , password):
+        flag = -1
+        break
+    else:
+        flag = 0
+        print("Valid Password")
+        break
+ 
+if flag == -1:
+    print("Not a Valid Password ")
+	
+	
+	6.genrate random number
+import random
+random.seed(50)
+for _ in range (3):
+ print(random.random())
